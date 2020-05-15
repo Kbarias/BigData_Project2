@@ -15,9 +15,11 @@ def fileParser():
     path='C:\\Users\\IVETTE ORTIZ\\Downloads\\project2_test.txt'
     f = open(path)
     csv_f = csv.reader(f)
+    i = 1
     for row in csv_f:
-        doc_content = ( int(row[0].split(' ',1)[0] ), row[0].split(' ',1)[1])  #split each line into docid and contents
+        doc_content = ( i, row[0].split(' ',1)[1]) #( int(row[0].split(' ',1)[0] ), row[0].split(' ',1)[1])  #split each line into docid and contents
         key_values.append(doc_content)
+        i+=1
     f.close()
     return key_values
 
@@ -66,12 +68,27 @@ secmap = firstmap.flatMapValues(f).map(lambda line: (line[1][0], (line[0], line[
 #combiner to return a new rdd with <key = term, value = [(docid, tf), ...]
 combined = secmap.groupByKey().map(lambda x : (x[0], idf(list(x[1]) , corpus_docs) ) )
 
+#filter only terms with 'gene_xxx_gene'
+filtered_terms = combined.filter(lambda x : (x[0].startswith("gene_") and (len(x[0]) ==13) ))
 
+def pr(x):
+    print('\n')
+    print(x)
+filtered_terms.foreach(pr)
 
-#print(firstmap.first())
+print('\n')
+print('\n')
+def temp_func(line):
+    row = [0] * (corpus_docs + 1)
+    row[0] = line[0]
+    for item in line[1]:
+        row[item[0]] = item[1]
+    print (*row)
+
+#creates a matrix of docs x terms
+filtered_terms.foreach(lambda x : temp_func(x) )  
 #print(firstmap.collect())
 #print(secmap.collect())
-print(combined.collect())
+#print(combined.collect())
 
-# lines=sc.textFile(path)
 sc.stop()
