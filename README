@@ -1,4 +1,4 @@
-*Prerequisites for Running on Jupyter Notebook (Recommended)
+*Prerequisites for Running on Jupyter Notebook (Recommended; no decimal precision using terminal)
 1. Have Java installed (specifically version 8)
 2. Have Apache Spark downloaded
 3. Have Anaconda installed
