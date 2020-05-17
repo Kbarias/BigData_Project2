@@ -1,9 +1,17 @@
-*Prerequisites
+*Prerequisites for Running on Jupyter Notebook (Recommended)
 1. Have Java installed (specifically version 8)
 2. Have Apache Spark downloaded
 3. Have Anaconda installed
 4. Have Jupyter Notebook installed
 
-How to run the project
-1. Open the file tf-idf.py in a jupyter notebook.
+How to run the project on Jupyter Notebook
+1. Open Jupyter Notebook via Anaconda
+2. Open tf-idf.py in a Jupyter Notebook
 2. Press the 'Run' button.
+
+
+How to run the project in terminal
+1. Navigate to folder where tf-idf.py file is downloaded
+2. Comment out the line in the file: 'import findspark' and 'findspark.init()'
+3. Type into terminal: spark-submit tf-idf.py
+4. Press Enter
