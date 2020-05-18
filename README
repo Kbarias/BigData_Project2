@@ -15,3 +15,5 @@ How to run the project in terminal
 2. Comment out the line in the file: 'import findspark' and 'findspark.init()'
 3. Type into terminal: spark-submit tf-idf.py
 4. Press Enter
+
+*to get tf x idf for terms with the pattern 'gene_xxx_gene', uncomment line 
